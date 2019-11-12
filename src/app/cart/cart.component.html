@@ -2,7 +2,6 @@
   <div class="cart_backdrop"></div>
   <div class="cart">
     <div class="cart_container">
-
       <div class="cart_header">
         <h4 class="ml-3">Cart</h4>
         <div class="d-flex align-items-center">
@@ -10,27 +9,26 @@
             <img class="secure_logo mt-1 mr-2" src="assets/icons/credit-card.svg">
             <div class="">Secure<br>Payment</div>
           </div>
-          <div class="cart_close">
+          <div class="cart_close" (click)="closeCart()">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAHFJREFUGBmNUEEOwCAIY/uDHv3/2a9s/2GtghHiYSSkWCo0iKo2ZEcWSUHOek2sAOiLrK5FTRE5RqdwJ4b4wM1t1niADIp9EjFaIoF0McohXqLbPRle6R2fNm1ft9fBX2gcPpZ8nuUJ4mo+AfM8vw7+AYSu+TObThZ1AAAAAElFTkSuQmCC" class="app-log" alt="Close Cart" title="Close Cart">
           </div>
         </div>
-        
       </div>
       
       <div class="p-3 pt-0">
-        <h5>Order Summary - <small>2 items</small></h5>
+        <h5>Order Summary - <small>{{cartItems.length}} items</small></h5>
         <hr>
-        <div class="cart_product">
+        <div class="cart_product" *ngFor="let item of cartItems">
           <div class="d-flex my-4">
             <div class="cart_image d-inline-block">
-              <img alt="" class="" height="50" src="https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg" title="" width="50">
+              <img alt="" class="" height="50" src="{{item.img_url}}" title="" width="50">
             </div>
             <div class="cart_details d-inline-block">
               <div class="d-flex justify-content-between">
                 <div class="product_title product_title--small">
-                  Adidas Originals
+                  {{item.name}}
                 </div>
-                <a href="#" title="Remove from Cart">
+                <a href="javascript:void(0);" title="Remove from Cart" (click)="removeFromCart(item.id)">
                   <img src="assets/icons/clear.svg" class="cart_delete">
                 </a>
               </div>
@@ -38,54 +36,22 @@
                 <div class="cart_quantity d-inline-block">
                   <div class="">
                     <small class="mr-1">Qty:</small>
-                    <button class="btn btn_qty text-grey p-0">-</button> 
-                    <span class="cartQty">1</span> 
-                    <button class="btn btn_qty text-green p-0">+</button>
+                    <button class="btn btn_qty text-grey p-0" [disabled]="item.qty == 1" (click)="AddRemoveQty(item.id)">-</button> 
+                    <span class="cartQty">{{item.qty}}</span> 
+                    <button class="btn btn_qty text-green p-0" [disabled]="item.qty == 5" (click)="AddRemoveQty(item.id,true)">+</button>
                   </div>
                 </div>
                 <div class="d-flex align-items-center">
-                  <div class="product_price product_price--strike mr-2">$499</div>
-                  <div class="product_price">$399</div>
+                  <div class="product_price product_price--strike mr-2" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price* item.qty}}</div>
+                  <div class="product_price">₹{{item.selling_price*item.qty}}</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="cart_product">
-          <div class="d-flex my-4">
-            <div class="cart_image d-inline-block">
-              <img alt="" class="" height="50" src="https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg" title="" width="50">
-            </div>
-            <div class="cart_details d-inline-block">
-              <div class="d-flex justify-content-between">
-                <div class="product_title product_title--small">
-                  Adidas Originals
-                </div>
-                <a href="#" title="Remove from Cart">
-                  <img src="assets/icons/clear.svg" class="cart_delete">
-                </a>
-              </div>
-              <div class="d-flex justify-content-between">
-                <div class="cart_quantity d-inline-block">
-                  <div class="">
-                    <small class="mr-1">Qty:</small>
-                    <button class="btn btn_qty text-grey p-0">-</button> 
-                    <span class="cartQty">1</span> 
-                    <button class="btn btn_qty text-green p-0">+</button>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center">
-                  <div class="product_price product_price--strike mr-2">$499</div>
-                  <div class="product_price">$399</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="p-3 mt-2">
+      <div class="p-3 mt-2" *ngIf="cartItems.length!= 0">
         <h5>Bill Details</h5>
         <div class="cart-summary-container">
           <div class="d-flex justify-content-between">
@@ -93,7 +59,7 @@
               <label class="font-weight-light">Total Item Price</label>
             </div>
             <div class="font-weight-light">
-              $500
+              ₹{{totalItemPrice}}
             </div>
           </div>
           <div class="d-flex justify-content-between">
@@ -101,7 +67,7 @@
               <label class="font-weight-light">Total Discount</label>
             </div>
             <div class="font-weight-light">
-              - $50
+              - ₹{{totalItemDiscount}}
             </div>
           </div>
           <div class="d-flex justify-content-between">
@@ -109,7 +75,7 @@
               <label class="font-weight-light">Type Discount</label>
             </div>
             <div class="font-weight-light">
-              - $0
+              - ₹0
             </div>
           </div>
           <hr class="mt-0">
@@ -117,13 +83,13 @@
             <div>
               <label class="font-weight-medium mb-0">Order Total</label>
             </div>
-            <div class="product_price">$399</div>
+            <div class="product_price">₹{{totalItemPrice - totalItemDiscount}}</div>
           </div>
           <hr>
         </div>
       </div>
 
-      <div class="fixed-bottom p-3">
+      <div class="fixed-bottom p-3" *ngIf="cartItems.length!= 0">
         <button class="btn btn_brand btn-block p-2">Proceed to Checkout</button>
       </div>
 

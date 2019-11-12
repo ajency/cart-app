@@ -1,31 +1,42 @@
  <div class="">
   <article class="card-wrapper">
     <div class="image-holder">
-      <a href="#" class="image-holder__link"></a>
+      <a href="javascript:void(0);" class=""></a>
       <div class="image-holder--original">
       	<img src="{{item.img_url}}" alt="">
       </div>
     </div>
 
-    <div class="discount-badge">
-      20% off
+    <div class="discount-badge" *ngIf="item.discount!=0">
+      {{item.discount}}% off
     </div>
 
     <div class="product-description">
       <!-- title -->
-      <h1 class="product_title">
-        <a href="javascript:void(0);">            
-          {{item.name}}
-          </a>
-      </h1>
-
-      <!-- price -->
       <div class="row">
-        <div class="col-12 d-flex">
-          <div class="product_price product_price--strike mr-2">${{item.mrp_price}}</div>
-          <div class="product_price">${{item.selling_price}}</div>
+      	<div class="col-7">
+      		<div class="container">
+      			<div class="row">
+	      			<h1 class="product_title">
+						<a href="javascript:void(0);">            
+							{{item.name}}
+						</a>
+					</h1>
+      			</div>
+	  		  	<div class="row">
+		        	<div class="d-flex">
+		          		<div class="product_price product_price--strike mr-2" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price}}</div>
+		          		<div class="product_price">₹{{item.selling_price}}</div>
+		        	</div>
+		      	</div>
+      		</div>
+  		</div>
+       	<div class="col-5">
+        	<button class="btn btn-outline-success mt-1 small-font" type="button" (click)="AddToCart(item)">Add To Cart</button>
         </div>
       </div>
+      <!-- price -->
+    
 
     </div>
   </article>

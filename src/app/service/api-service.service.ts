@@ -34,15 +34,6 @@ export class ApiServiceService {
 		if(type == 'get'){
 		  httpEvent = this.http.get(url,{params : this.toHttpParams(body), headers: headers});
 		}
-		else if(type == 'post'){
-			if(observeResponse)
-		  		httpEvent = this.http.post(url,body,{ headers: headers, observe: 'response', withCredentials: true })
-		  	else
-		  		httpEvent = this.http.post(url,body,{ headers: headers, withCredentials: true})
-		}
-		else if(type == 'put'){
-		  httpEvent = this.http.put(url,body,{headers: headers, withCredentials: true})
-		}
 
 		if(returntype == 'promise'){
 		  return httpEvent

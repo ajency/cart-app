@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {ApiServiceService} from '../service/api-service.service'
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ApiServiceService } from '../service/api-service.service';
+import { AppServiceService } from '../service/app-service.service';
+import { Subscription } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-item-listing',
@@ -9,18 +13,34 @@ import {ApiServiceService} from '../service/api-service.service'
 export class ItemListingComponent implements OnInit {
 
 	items: any;
-  constructor(private apiservice:ApiServiceService) { }
+	ShowCart:boolean=false;
+	showLoader:boolean=true;
+	ApiCallComplete: boolean=false;
+	OpenCartListener: Subscription;
+	CloseCartListener: Subscription;
+  constructor(private apiservice:ApiServiceService, private appservice:AppServiceService) { 
+  	    this.OpenCartListener = this.appservice.listenToOpenCartTrigger().subscribe(()=>{ console.log('show cart');this.ShowCart =true; });
+  	    this.CloseCartListener = this.appservice.listenToCloseCartTrigger().subscribe(()=>{ console.log('close cart');this.ShowCart =false; });
+  }
 
 	ngOnInit() {
 		this.fetchItems();
 	}
 
+	ngOnDestroy(){
+		this.OpenCartListener.unsubscribe();
+		this.CloseCartListener.unsubscribe();
+	}
+
 	fetchItems(){
-		 this.apiservice.request('bins/qhnfp', 'get', {} , {}).then((response)=>{
+		this.apiservice.request('bins/qhnfp', 'get', {} , {}).then((response)=>{
+		this.showLoader = false;
+		this.ApiCallComplete = true;
 	    this.items = this.formatData(response);
 	    console.dir(this.items);
 	  })
 	  .catch((error)=>{
+	  	this.ApiCallComplete = true;
 	    console.log("error ===>", error);
 	  }) 
 	}

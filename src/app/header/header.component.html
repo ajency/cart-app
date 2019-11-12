@@ -1,0 +1,9 @@
+<header>
+  <h1>
+    {{headerContent}}
+  </h1>
+  <div class="view-cart-btn" (click)="openCart()">
+    <img src="assets/icons/shopping-cart.svg" >
+    <span class="badge badge-light cart-counter" [ngClass]="{'d-none':cart_count == ''}"><div id="output">{{cart_count}}</div></span>
+  </div>
+</header>

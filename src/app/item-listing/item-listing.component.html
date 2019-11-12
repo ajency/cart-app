@@ -1,7 +1,11 @@
-<div class="container">
+<app-list-loader *ngIf="showLoader"></app-list-loader>
+
+<div class="container" *ngIf="!showLoader && ApiCallComplete">
   <div class="row">
   	<ng-container *ngFor="let item of items">
   		<app-item-card [item]="item" class="col-12 col-sm-6 col-md-4 col-lg-3"></app-item-card>
   	</ng-container>
   </div>
 </div>
+
+<app-cart *ngIf="ShowCart" [cartItems]="appservice.cartItems"></app-cart>
