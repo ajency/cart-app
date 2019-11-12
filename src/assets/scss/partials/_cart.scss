@@ -10,8 +10,11 @@
 		box-shadow: -2px 0 10px rgba(black, .5);
 		transform: translate(500px,0);
 		transition: transform 0.3s ease-out;
-		overflow-y: auto;
 		
+		&_container{
+			height: calc(100vh - 74px);
+			overflow-y: auto;
+		}
 	}
 	&--active{
 		.cart{
@@ -25,6 +28,12 @@
 				background-color: rgba(black, .3);
 				z-index: 8;
 			}
+		}
+	}
+
+	@media(max-width: 580px){
+		.cart{
+			width: 100%;
 		}
 	}
 }
@@ -64,11 +73,6 @@
 	}
 	&_details{
 		width: 100%;
-		padding-right: 10px;
-		@media (max-width: 480px) {
-			//width: 45%;
-			padding-right: 8px;
-		}
 	}
 	&_quantity{
 		//width: 25%;
