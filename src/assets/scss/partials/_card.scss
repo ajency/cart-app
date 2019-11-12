@@ -105,7 +105,11 @@
   }
 
   .image-holder--original {
-    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    height: 100%;
+    img{
+      object-fit: contain;
+      height: 100%;
+    }
   }
 }
 
@@ -113,19 +117,6 @@
   .image-holder {
     height: 325px;
   }
-}
-
-@media (min-width: 768px) {
-  .image-holder:after {
-    // top: 107.5px;
-  }
-}
-
-.image-liquid {
-  width: 100%;
-  height: 325px;
-  background-size: cover;
-  background-position: center center;
 }
 
 .product-description {
