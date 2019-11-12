@@ -1,8 +1,93 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<header>
   <h1>
-    Welcome to {{ title }}!
+    Ajency Shopping
   </h1>
+  <div class="view-cart-btn">
+    <img src="assets/icons/shopping-cart.svg">
+  </div>
+</header>
+
+<div class="cartWrapper cartWrapper--active">
+  <div class="cart_backdrop"></div>
+  <div class="cart">
+
+    <div class="cart_header">
+      <h4 class="ml-3">Cart</h4>
+      <div class="d-flex align-items-center">
+        <div class="mr-3 d-flex">
+          <img class="secure_logo mt-1 mr-2" src="assets/icons/credit-card.svg">
+          <div class="">Secure<br>Payment</div>
+        </div>
+        <div class="cart_close">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAHFJREFUGBmNUEEOwCAIY/uDHv3/2a9s/2GtghHiYSSkWCo0iKo2ZEcWSUHOek2sAOiLrK5FTRE5RqdwJ4b4wM1t1niADIp9EjFaIoF0McohXqLbPRle6R2fNm1ft9fBX2gcPpZ8nuUJ4mo+AfM8vw7+AYSu+TObThZ1AAAAAElFTkSuQmCC" class="app-log" alt="Close Cart" title="Close Cart">
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="p-3 pt-0">
+      <h5>2 items</h5>
+      <hr>
+      <div class="cart_product">
+        <div class="d-flex my-4">
+          <div class="cart_image d-inline-block">
+            <img alt="" class="" height="50" src="https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg" title="" width="50">
+          </div>
+          <div class="cart_details d-inline-block">
+            <div class="product_title product_title--small">
+              Adidas Originals
+            </div>
+            <div class="d-flex justify-content-between">
+              <div class="cart_quantity d-inline-block">
+                <div class="">
+                  <small class="mr-1">Qty:</small>
+                  <button class="btn btn_qty text-grey p-0">-</button> 
+                  <span class="cartQty">1</span> 
+                  <button class="btn btn_qty text-green p-0">+</button>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="product_price product_price--strike mr-2">₹499</div>
+                <div class="product_price">₹399</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cart_product">
+        <div class="d-flex my-4">
+          <div class="cart_image d-inline-block">
+            <img alt="" class="" height="50" src="https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg" title="" width="50">
+          </div>
+          <div class="cart_details d-inline-block">
+            <div class="product_title product_title--small">
+              Adidas Originals
+            </div>
+            <div class="d-flex justify-content-between">
+              <div class="cart_quantity d-inline-block">
+                <div class="">
+                  <small class="mr-1">Qty:</small>
+                  <button class="btn btn_qty text-grey p-0">-</button> 
+                  <span class="cartQty">1</span> 
+                  <button class="btn btn_qty text-green p-0">+</button>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="product_price product_price--strike mr-2">₹499</div>
+                <div class="product_price">₹399</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fixed-bottom p-3">
+      <button class="btn btn_brand btn-block p-2">Proceed to Checkout</button>
+    </div>
+
+  </div>
 </div>
 
 <div class="container">
@@ -18,17 +103,17 @@
 
         <div class="product-description">
           <!-- title -->
-          <h1 class="product-description__title">
+          <h3 class="product_title">
             <a href="#">            
               Adidas Originals
               </a>
-          </h1>
+          </h3>
 
           <!-- price -->
           <div class="row">
             <div class="col-12 d-flex">
-              <div class="product-description__price product-description__price--strike mr-2">€ 499</div>
-              <div class="product-description__price">€ 399</div>
+              <div class="product_price product_price--strike mr-2">₹499</div>
+              <div class="product_price">₹399</div>
             </div>
           </div>
 
@@ -47,17 +132,17 @@
 
         <div class="product-description">
           <!-- title -->
-          <h1 class="product-description__title">
+          <h3 class="product_title">
             <a href="#">            
               Adidas Originals
               </a>
-          </h1>
+          </h3>
 
           <!-- price -->
           <div class="row">
             <div class="col-12 d-flex">
-              <div class="product-description__price product-description__price--strike mr-2">€ 499</div>
-              <div class="product-description__price">€ 399</div>
+              <div class="product_price product_price--strike mr-2">₹499</div>
+              <div class="product_price">₹399</div>
             </div>
           </div>
         </div>
@@ -73,18 +158,22 @@
           </div>
         </div>
 
+        <div class="discount-badge">
+          20% off
+        </div>
+
         <div class="product-description">
           <!-- title -->
-          <h1 class="product-description__title">
+          <h3 class="product_title">
             <a href="#">            
               Adidas Originals
               </a>
-          </h1>
+          </h3>
 
           <!-- price -->
           <div class="row">
             <div class="col-12 d-flex">
-              <div class="product-description__price">€ 499</div>
+              <div class="product_price">₹499</div>
             </div>
           </div>
         </div>

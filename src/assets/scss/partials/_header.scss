@@ -1,0 +1,24 @@
+header{
+	position: sticky;
+	top: 0;
+	width: 100%;
+	// padding: 15px;
+	margin-bottom: 50px;
+	background: $brand-primary;
+	display: flex;
+	justify-content: space-between;
+	z-index: 5;
+	h1{
+		font-size: 24px;
+		margin: 15px;
+	}
+	.view-cart-btn{
+		padding: 12px 15px;
+		cursor: pointer;
+		img{
+			display: block;
+		    height: 30px;
+		    width: 30px;
+		}
+	}
+}
