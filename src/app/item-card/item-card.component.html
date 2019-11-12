@@ -1,0 +1,29 @@
+ <div class="">
+      <article class="card-wrapper">
+        <div class="image-holder">
+          <a href="#" class="image-holder__link"></a>
+          <div class="image-liquid image-holder--original">
+          	<img src="{{item.img_url}}" alt="">
+          </div>
+        </div>
+
+        <div class="product-description">
+          <!-- title -->
+          <h1 class="product-description__title">
+            <a href="javascript:void(0);">            
+              {{item.name}}
+              </a>
+          </h1>
+
+          <!-- price -->
+          <div class="row">
+            <div class="col-12 d-flex">
+              <div class="product-description__price product-description__price--strike mr-2">€ {{item.mrp_price}}</div>
+              <div class="product-description__price">€ {{item.selling_price}}</div>
+            </div>
+          </div>
+
+        </div>
+
+      </article>
+    </div>
