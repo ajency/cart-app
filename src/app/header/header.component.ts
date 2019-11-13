@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppServiceService } from '../service/app-service.service'
 import { Subscription } from 'rxjs';
 
-// declare var $: any;
-
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -24,7 +21,6 @@ export class HeaderComponent implements OnInit {
 
   openCart(){
   	this.appservice.openCartTrigger();
-  	// $('body').attr('overflow-y','none');
   }
 
 

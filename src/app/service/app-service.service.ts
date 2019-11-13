@@ -1,10 +1,5 @@
-import { Injectable, isDevMode, EventEmitter, Output} from '@angular/core';
+import { Injectable, isDevMode} from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ApiServiceService } from './api-service.service';
-// import * as moment from 'moment';
-
-declare var $: any;
-// declare var cdn_url : any;
 
 @Injectable()
 export class AppServiceService {
@@ -17,7 +12,7 @@ export class AppServiceService {
   cartItems:any=[];
  
 
-  constructor( private apiservice : ApiServiceService) { 
+  constructor( ) { 
   }
 
   openCartTrigger(){
