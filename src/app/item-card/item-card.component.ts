@@ -37,13 +37,13 @@ export class ItemCardComponent implements OnInit {
   }
 
   showToast(added=false){
-    document.getElementsByClassName('toast_brand')[0].classList.add('shown');
+    document.getElementsByClassName('toast_msg_page')[0].classList.add('shown');
     if(added)
-      document.getElementsByClassName('toast_brand')[0].innerHTML ="Already added to cart!";
+      document.getElementsByClassName('toast_msg_page')[0].innerHTML ="Already added to cart!";
     else
-      document.getElementsByClassName('toast_brand')[0].innerHTML ="Successfully added to cart!";
+      document.getElementsByClassName('toast_msg_page')[0].innerHTML ="Successfully added to cart!";
     setTimeout(function(){
-       document.getElementsByClassName('toast_brand')[0].classList.remove('shown');
+       document.getElementsByClassName('toast_msg_page')[0].classList.remove('shown');
     },1500)
   }
 

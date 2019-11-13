@@ -14,6 +14,7 @@
 		&_container{
 			height: calc(100vh - 74px);
 			overflow-y: auto;
+			position: relative;
 		}
 	}
 	&--active{
@@ -69,7 +70,7 @@
 	}
 	&_image {
 		padding-right: 10px;
-		width: 17%;
+		width: 20%;
 		img{
 			object-fit: cover;
 		}

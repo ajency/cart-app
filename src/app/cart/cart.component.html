@@ -1,7 +1,12 @@
-<div class="cartWrapper" [ngClass]="{'cartWrapper--active':showCart}"> <!-- cartWrapper--active class to be removed/added to toggle cart -->
+<div class="cartWrapper" [ngClass]="{'cartWrapper--active':showCart}"> 
   <div class="cart_backdrop"></div>
   <div class="cart">
     <div class="cart_container">
+    	
+    	<div class=" toast_msg toast_msg_cart shown">
+    	  Max. quantity reached!
+    	</div>
+
       <div class="cart_header">
         <h4 class="ml-3">Cart</h4>
         <div class="d-flex align-items-center">
@@ -21,7 +26,7 @@
         <div class="cart_product" *ngFor="let item of cartItems">
           <div class="d-flex my-4">
             <div class="cart_image d-inline-block">
-              <img alt="" class="" height="50" src="{{item.img_url}}" title="" width="50">
+              <img alt="{{item.name}}" class="" height="70" src="{{item.img_url}}" title="{{item.name}}" width="70">
             </div>
             <div class="cart_details d-inline-block">
               <div class="d-flex justify-content-between">
