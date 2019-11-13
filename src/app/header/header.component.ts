@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   constructor(private appservice:AppServiceService) { }
 
   ngOnInit() {
-  	this.headerContent ="Ajency Shopping";
+  	this.headerContent ="Shopping";
   	this.CartCountListener = this.appservice.listenToCartCountTrigger().subscribe((count)=>{this.cart_count = count;});
   }
 

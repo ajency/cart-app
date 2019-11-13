@@ -32,6 +32,10 @@
                   <img src="assets/icons/clear.svg" class="cart_delete">
                 </a>
               </div>
+              <div class="d-flex align-items-center">
+                <div class="product_price product_price--strike mr-2 text-danger" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price}}</div>
+                <div>₹{{item.selling_price}}</div>
+              </div>
               <div class="d-flex justify-content-between">
                 <div class="d-inline-block text-center">
                   <div class="">
@@ -42,7 +46,6 @@
                   </div>
                 </div>
                 <div class="d-flex align-items-center">
-                  <div class="product_price product_price--strike mr-2" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price* item.qty}}</div>
                   <div class="product_price">₹{{item.selling_price*item.qty}}</div>
                 </div>
               </div>
