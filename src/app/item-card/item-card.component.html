@@ -14,30 +14,24 @@
     <div class="product-description">
       <!-- title -->
       <div class="row">
-      	<div class="col-7">
-      		<div class="container">
-      			<div class="row">
-	      			<h1 class="product_title">
-						<a href="javascript:void(0);">            
-							{{item.name}}
-						</a>
-					</h1>
-      			</div>
-	  		  	<div class="row">
-		        	<div class="d-flex">
-		          		<div class="product_price product_price--strike mr-2" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price}}</div>
-		          		<div class="product_price">₹{{item.selling_price}}</div>
-		        	</div>
-		      	</div>
+      	<div class="col-6">
+      		<div class="">
+      			<h1 class="product_title">
+  						<a href="javascript:void(0);">
+  							{{item.name}}
+  						</a>
+  					</h1>
+	        	<div class="d-flex">
+          		<div class="product_price product_price--strike mr-2" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price}}</div>
+          		<div class="product_price">₹{{item.selling_price}}</div>
+	        	</div>
       		</div>
-  		</div>
-       	<div class="col-5">
-        	<button class="btn btn-outline-success mt-1 small-font" type="button" (click)="AddToCart(item)">Add To Cart</button>
+  		  </div>
+       	<div class="col-6 d-flex align-items-center">
+        	<button class="btn btn_brand btn_sm btn-block" type="button" (click)="AddToCart(item)">Add To Cart</button>
         </div>
       </div>
-      <!-- price -->
     
-
     </div>
   </article>
 </div>

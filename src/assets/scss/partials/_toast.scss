@@ -1,0 +1,16 @@
+.toast_brand{
+    padding: 15px 20px;
+    color: #fff;
+    background: rgba(0,0,10,0.7);
+    display: inline-block;
+    position: fixed;
+    top: 70px;
+    transform: translateX(300px);
+    right: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease-out;
+    z-index: 10;
+    &.shown{
+        transform: translateX(0px);
+    }
+}
