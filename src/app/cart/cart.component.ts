@@ -9,6 +9,7 @@ import {AppServiceService} from '../service/app-service.service';
 export class CartComponent implements OnInit {
 
   @Input() cartItems: any;
+  @Input() showCart: any;
   totalItemDiscount:any =0;
   totalItemPrice:any =0;
   constructor(private appservice:AppServiceService) { }
