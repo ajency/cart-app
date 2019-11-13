@@ -59,9 +59,11 @@ export class CartComponent implements OnInit {
   calculateFinalPriceSummary(){
     this.totalItemPrice=0;
     this.totalItemDiscount=0;
-    for(let i of this.cartItems){
-      this.totalItemPrice+= i.qty*i.mrp_price;
-      this.totalItemDiscount+= i.qty*(i.mrp_price-i.selling_price);
+    if(this.cartItems){
+      for(let i of this.cartItems){
+        this.totalItemPrice+= i.qty*i.mrp_price;
+        this.totalItemDiscount+= i.qty*(i.mrp_price-i.selling_price);
+      }
     }
   }
 

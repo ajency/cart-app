@@ -17,7 +17,7 @@ export class ItemListingComponent implements OnInit {
 	ApiCallComplete: boolean=false;
 	ApiError:boolean =false;
 	CloseCartListener: Subscription;
-	cartItems:any;
+	cartItems:any =[];
 	cartCount:number=0;
 	showToastValue:boolean=false;
 	toastMsg: string='';
