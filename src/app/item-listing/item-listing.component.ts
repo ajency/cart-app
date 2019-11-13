@@ -16,12 +16,15 @@ export class ItemListingComponent implements OnInit {
 	ShowCart:boolean=false;
 	showLoader:boolean=true;
 	ApiCallComplete: boolean=false;
+	ApiError:boolean =false;
 	OpenCartListener: Subscription;
 	CloseCartListener: Subscription;
+	FetchItemListener: Subscription;
 	cartItems:any;
   constructor(private apiservice:ApiServiceService, private appservice:AppServiceService) { 
   	    this.OpenCartListener = this.appservice.listenToOpenCartTrigger().subscribe(()=>{ this.ShowCart =true; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "hidden"; });
   	    this.CloseCartListener = this.appservice.listenToCloseCartTrigger().subscribe(()=>{ this.ShowCart =false; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "auto";});
+  	    this.FetchItemListener = this.appservice.listenToFetchItemTrigger().subscribe(()=>{ this.fetchItems();});
   }
 
 	ngOnInit() {
@@ -36,16 +39,20 @@ export class ItemListingComponent implements OnInit {
 	ngOnDestroy(){
 		this.OpenCartListener.unsubscribe();
 		this.CloseCartListener.unsubscribe();
+		this.FetchItemListener.unsubscribe();
 	}
 
 	fetchItems(){
 		this.apiservice.request('bins/qhnfp', 'get', {} , {}).then((response)=>{
 		this.showLoader = false;
 		this.ApiCallComplete = true;
+	  	this.ApiError = false;
 	    this.items = this.formatData(response);
 	  })
 	  .catch((error)=>{
+	  	this.showLoader = false;
 	  	this.ApiCallComplete = true;
+	  	this.ApiError = true;
 	    console.log("error ===>", error);
 	  }) 
 	}

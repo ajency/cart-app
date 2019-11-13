@@ -13,6 +13,7 @@ export class AppServiceService {
   private openCart = new Subject<any>();
   private closeCart = new Subject<any>();
   private cartCount = new Subject<any>();
+  private fetchItem = new Subject<any>();
   cartItems:any=[];
  
 
@@ -41,5 +42,13 @@ export class AppServiceService {
 
   listenToCartCountTrigger() : Observable<any> {    
     return this.cartCount.asObservable();
+  }
+
+  fetchItemTrigger(){
+    this.fetchItem.next();
+  }
+
+  listenToFetchItemTrigger() : Observable<any> {    
+    return this.fetchItem.asObservable();
   }
 }

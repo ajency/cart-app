@@ -10,5 +10,6 @@
   	</ng-container>
   </div>
 </div>
-
 <app-cart [showCart]="ShowCart" [cartItems]="cartItems"></app-cart>
+
+<app-erro-page *ngIf="!showLoader && ApiCallComplete && ApiError"></app-erro-page>
