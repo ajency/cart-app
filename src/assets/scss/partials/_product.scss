@@ -8,6 +8,11 @@
     border-bottom-width: 2px;
     overflow: hidden;
     margin-bottom: 30px;
+    &:hover{
+      .product_image{
+        transform: scale(1.1);
+      }
+    }
   }
 
   &_image {
@@ -17,6 +22,7 @@
     height: 280px;
     background-color: white;
     z-index: 1;
+    transition: transform 0.3s ease;
 
     &_holder {
       height: 100%;
