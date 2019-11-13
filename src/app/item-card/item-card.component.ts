@@ -14,12 +14,12 @@ export class ItemCardComponent implements OnInit {
   }
 
   AddToCart(item){
-    console.log('inisde add to cart');
   	let items = this.appservice.cartItems;
     if(items.length == 0 || !this.checkIfAlreadyPresent(item,items))
     {
       item.qty = 1;
        this.appservice.cartItems.push(item);
+       localStorage.setItem('demo-cart',JSON.stringify(this.appservice.cartItems));
        this.appservice.cartCountTrigger(this.appservice.cartItems.length);
        this.showToast();
     } 

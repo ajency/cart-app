@@ -20,12 +20,16 @@ export class ItemListingComponent implements OnInit {
 	CloseCartListener: Subscription;
 	cartItems:any;
   constructor(private apiservice:ApiServiceService, private appservice:AppServiceService) { 
-  	    this.OpenCartListener = this.appservice.listenToOpenCartTrigger().subscribe(()=>{ console.log('show cart');this.ShowCart =true; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "hidden"; });
-  	    this.CloseCartListener = this.appservice.listenToCloseCartTrigger().subscribe(()=>{ console.log('close cart');this.ShowCart =false; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "auto";});
+  	    this.OpenCartListener = this.appservice.listenToOpenCartTrigger().subscribe(()=>{ this.ShowCart =true; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "hidden"; });
+  	    this.CloseCartListener = this.appservice.listenToCloseCartTrigger().subscribe(()=>{ this.ShowCart =false; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "auto";});
   }
 
 	ngOnInit() {
 		this.fetchItems();
+		if(localStorage.getItem('demo-cart')){
+			this.appservice.cartItems = JSON.parse(localStorage.getItem('demo-cart'));
+			this.appservice.cartCountTrigger(this.appservice.cartItems.length);
+		}
 		this.cartItems = this.appservice.cartItems;
 	}
 
@@ -39,7 +43,6 @@ export class ItemListingComponent implements OnInit {
 		this.showLoader = false;
 		this.ApiCallComplete = true;
 	    this.items = this.formatData(response);
-	    console.dir(this.items);
 	  })
 	  .catch((error)=>{
 	  	this.ApiCallComplete = true;

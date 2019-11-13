@@ -30,11 +30,11 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(id){
-    console.log('remove from cart')
     let i = this.cartItems.length;
     while(i--){
        if(this.cartItems[i] && this.cartItems[i]['id'] === id){ 
            this.cartItems.splice(i,1);
+           localStorage.setItem('demo-cart',JSON.stringify(this.cartItems));
            this.appservice.cartCountTrigger(this.cartItems.length);
        }
     }
