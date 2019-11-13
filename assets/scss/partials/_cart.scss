@@ -78,29 +78,25 @@
 		width: 100%;
 	}
 	&_quantity{
-		//width: 25%;
-		text-align: center;		
-		@media (max-width: 480px) {
-			//width: 25%;
-			.btn-qty{
-				padding: 6px;
-			}
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 22px;
+		color: black;
+		cursor: pointer;
+		min-width: 30px;
+	}
+	&_empty{
+		height: 60vh;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+		img{
+			width: 80px;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
 		}
 	}
-	// &_price{
-	// 	font-size: 15px;
-	// 	line-height: 20px;
-	// 	//width: 13%;
-	// }
-}
-
-.cartQty{
-	display: inline-block;
-	vertical-align: middle;
-	font-size: 16px;
-	font-weight: 500;
-	line-height: 22px;
-	color: black;
-	cursor: pointer;
-	min-width: 30px;
 }
