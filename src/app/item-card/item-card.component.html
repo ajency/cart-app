@@ -3,11 +3,11 @@
     <div class="image-holder">
       <a href="javascript:void(0);" class=""></a>
       <div class="image-holder--original">
-      	<img src="{{item.img_url}}" alt="">
+      	<img src="{{item.img_url}}" alt="{{item.name}} image" title="{{item.name}} image">
       </div>
     </div>
 
-    <div class="discount-badge" *ngIf="item.discount!=0">
+    <div class="discount-badge" *ngIf="item.discount!=0" title="Discount on product">
       {{item.discount}}% off
     </div>
 
@@ -28,8 +28,8 @@
       		</div>
   		  </div>
        	<div class="col-6 d-flex align-items-center">
-        	<button class="btn btn_brand btn_sm btn-block" type="button" (click)="AddToCart(item)">Add To Cart</button>
-        </div>
+        	<button class="btn btn_brand btn_sm btn-block" type="button" (click)="AddToCart(item)"  title="Add the product to cart">Add To Cart</button>
+  		  </div>
       </div>
     
     </div>

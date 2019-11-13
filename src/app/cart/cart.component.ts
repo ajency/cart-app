@@ -1,5 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import {AppServiceService} from '../service/app-service.service';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +14,11 @@ export class CartComponent implements OnInit {
   @Input() showCart: any;
   totalItemDiscount:any =0;
   totalItemPrice:any =0;
-  constructor(private appservice:AppServiceService) { }
+  OpenCartListener: Subscription;
+
+  constructor(private appservice:AppServiceService) { 
+    this.OpenCartListener = this.appservice.listenToOpenCartTrigger().subscribe(()=>{ this.calculateFinalPriceSummary()});
+  }
 
   ngOnInit() {
     this.calculateFinalPriceSummary()
