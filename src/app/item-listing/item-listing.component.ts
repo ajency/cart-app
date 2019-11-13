@@ -20,8 +20,8 @@ export class ItemListingComponent implements OnInit {
 	CloseCartListener: Subscription;
 	cartItems:any;
   constructor(private apiservice:ApiServiceService, private appservice:AppServiceService) { 
-  	    this.OpenCartListener = this.appservice.listenToOpenCartTrigger().subscribe(()=>{ console.log('show cart');this.ShowCart =true; this.cartItems = this.appservice.cartItems;});
-  	    this.CloseCartListener = this.appservice.listenToCloseCartTrigger().subscribe(()=>{ console.log('close cart');this.ShowCart =false; this.cartItems = this.appservice.cartItems;});
+  	    this.OpenCartListener = this.appservice.listenToOpenCartTrigger().subscribe(()=>{ console.log('show cart');this.ShowCart =true; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "hidden"; });
+  	    this.CloseCartListener = this.appservice.listenToCloseCartTrigger().subscribe(()=>{ console.log('close cart');this.ShowCart =false; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "auto";});
   }
 
 	ngOnInit() {

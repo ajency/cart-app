@@ -1,18 +1,16 @@
  <div class="">
   <article class="product_card">
     <div class="product_image">
-      <a href="javascript:void(0);" class=""></a>
       <div class="product_image_holder">
-      	<img src="{{item.img_url}}" alt="">
+      	<img src="{{item.img_url}}" alt="{{item.name}} image" title="{{item.name}} image">
       </div>
     </div>
 
-    <div class="discount_badge" *ngIf="item.discount!=0">
+    <div class="discount_badge" *ngIf="item.discount!=0" title="Discount on product">
       {{item.discount}}% off
     </div>
 
     <div class="product_description">
-      <!-- title -->
       <div class="row">
       	<div class="col-6">
       		<div class="">
@@ -28,8 +26,8 @@
       		</div>
   		  </div>
        	<div class="col-6 d-flex align-items-center">
-        	<button class="btn btn_brand btn_sm btn-block" type="button" (click)="AddToCart(item)">Add To Cart</button>
-        </div>
+        	<button class="btn btn_brand btn_sm btn-block" type="button" (click)="AddToCart(item)"  title="Add the product to cart">Add To Cart</button>
+  		  </div>
       </div>
     
     </div>

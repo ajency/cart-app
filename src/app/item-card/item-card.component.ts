@@ -21,7 +21,11 @@ export class ItemCardComponent implements OnInit {
       item.qty = 1;
        this.appservice.cartItems.push(item);
        this.appservice.cartCountTrigger(this.appservice.cartItems.length);
+       this.showToast();
     } 
+    else{
+        this.showToast(true);
+    }
   }  
 
   checkIfAlreadyPresent(item,items){
@@ -30,6 +34,17 @@ export class ItemCardComponent implements OnInit {
         return true;
     }
     return false;
+  }
+
+  showToast(added=false){
+    document.getElementsByClassName('toast_brand')[0].classList.add('shown');
+    if(added)
+      document.getElementsByClassName('toast_brand')[0].innerHTML ="Already added to cart!";
+    else
+      document.getElementsByClassName('toast_brand')[0].innerHTML ="Successfully added to cart!";
+    setTimeout(function(){
+       document.getElementsByClassName('toast_brand')[0].classList.remove('shown');
+    },600)
   }
 
 }
