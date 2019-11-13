@@ -1,17 +1,17 @@
  <div class="">
-  <article class="card-wrapper">
-    <div class="image-holder">
+  <article class="product_card">
+    <div class="product_image">
       <a href="javascript:void(0);" class=""></a>
-      <div class="image-holder--original">
+      <div class="product_image_holder">
       	<img src="{{item.img_url}}" alt="">
       </div>
     </div>
 
-    <div class="discount-badge" *ngIf="item.discount!=0">
+    <div class="discount_badge" *ngIf="item.discount!=0">
       {{item.discount}}% off
     </div>
 
-    <div class="product-description">
+    <div class="product_description">
       <!-- title -->
       <div class="row">
       	<div class="col-6">
