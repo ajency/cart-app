@@ -44,7 +44,7 @@ export class ItemCardComponent implements OnInit {
       document.getElementsByClassName('toast_brand')[0].innerHTML ="Successfully added to cart!";
     setTimeout(function(){
        document.getElementsByClassName('toast_brand')[0].classList.remove('shown');
-    },600)
+    },1500)
   }
 
 }
