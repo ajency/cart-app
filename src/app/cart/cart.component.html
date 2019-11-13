@@ -4,8 +4,8 @@
 	<div class="cart_container">
 		
 		<!-- Message if max quantity reached for an item -->
-		<div class=" toast_msg toast_msg_cart">
-		  Max. quantity reached!
+		<div class=" toast_msg toast_msg_cart" [ngClass]="{'shown':showToast}">
+		  {{toastMsg}}
 		</div>
 
 		<!-- Header for cart -->
@@ -80,14 +80,6 @@
 				</div>
 				<div class="font-weight-light text-success">
 				  - ₹{{totalItemDiscount}}
-				</div>
-			  </div>
-			  <div class="d-flex justify-content-between">
-				<div>
-				  <label class="font-weight-light">Type Discount</label>
-				</div>
-				<div class="font-weight-light">
-				  - ₹0
 				</div>
 			  </div>
 			  <hr class="mt-0">

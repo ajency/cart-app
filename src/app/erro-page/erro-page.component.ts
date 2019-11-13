@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AppServiceService } from '../service/app-service.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-erro-page',
@@ -8,13 +7,14 @@ import { AppServiceService } from '../service/app-service.service';
 })
 export class ErroPageComponent implements OnInit {
 
-  constructor(private appservice: AppServiceService) { }
+	@Output() callFetchApi = new EventEmitter();
+  constructor() { }
 
   ngOnInit() {
   }
 
-  callFetchAPI(){
-  	this.appservice.fetchItemTrigger();
+  callFetch(){
+  	this.callFetchApi.emit();
   }
 
 }

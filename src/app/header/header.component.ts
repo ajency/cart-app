@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AppServiceService } from '../service/app-service.service'
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,20 +8,17 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-	headerContent:any;
-  	CartCountListener:Subscription;
-  	cart_count:any='';
-  constructor(private appservice:AppServiceService) { }
+  @Input() cartCount:number;
+  @Output() openCartEvent = new EventEmitter();
+	headerContent:string;
+  
+  constructor() { }
 
   ngOnInit() {
   	this.headerContent ="Shopping";
-  	this.CartCountListener = this.appservice.listenToCartCountTrigger().subscribe((count)=>{this.cart_count = count;});
   }
 
   openCart(){
-  	this.appservice.openCartTrigger();
+  	this.openCartEvent.emit();
   }
-
-
-
 }

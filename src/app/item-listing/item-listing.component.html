@@ -1,6 +1,8 @@
+<app-header (openCartEvent)="openCart();cart.calculateFinalPriceSummary();" [cartCount]="cartCount"></app-header>
+
 <!-- Toast on click of Add to Cart button -->
-<div class="toast_msg toast_msg_page">
-  Successfully added to cart!
+<div class="toast_msg toast_msg_page" [ngClass]="{'shown': showToastValue}">
+  {{toastMsg}}
 </div>
 
 <!-- Preloader -->
@@ -10,13 +12,13 @@
 <div class="container" *ngIf="!showLoader && ApiCallComplete && !ApiError">
   <div class="row">
   	<ng-container *ngFor="let item of items">
-  		<app-item-card [item]="item" class="col-12 col-sm-6 col-md-4 col-lg-3"></app-item-card>
+  		<app-item-card [item]="item" class="col-12 col-sm-6 col-md-4 col-lg-3" (addToCartEvent)="AddtoCart($event)"></app-item-card>
   	</ng-container>
   </div>
 </div>
 
 <!-- Cart -->
-<app-cart [showCart]="ShowCart" [cartItems]="cartItems"></app-cart>
+<app-cart [showCart]="ShowCart" [cartItems]="cartItems" (closeCartEmitter)="closeCart()" (updateCartCount)="cartCount = $event" #cart></app-cart>
 
 <!-- Error screen -->
-<app-erro-page *ngIf="!showLoader && ApiCallComplete && ApiError"></app-erro-page>
+<app-erro-page *ngIf="!showLoader && ApiCallComplete && ApiError" (callFetchApi)="fetchItems()"></app-erro-page>

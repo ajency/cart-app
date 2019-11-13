@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiServiceService } from '../service/api-service.service';
-import { AppServiceService } from '../service/app-service.service';
 import { Subscription } from 'rxjs';
 
 
@@ -17,29 +16,19 @@ export class ItemListingComponent implements OnInit {
 	showLoader:boolean=true;
 	ApiCallComplete: boolean=false;
 	ApiError:boolean =false;
-	OpenCartListener: Subscription;
 	CloseCartListener: Subscription;
-	FetchItemListener: Subscription;
 	cartItems:any;
-  constructor(private apiservice:ApiServiceService, private appservice:AppServiceService) { 
-  	    this.OpenCartListener = this.appservice.listenToOpenCartTrigger().subscribe(()=>{ this.ShowCart =true; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "hidden"; });
-  	    this.CloseCartListener = this.appservice.listenToCloseCartTrigger().subscribe(()=>{ this.ShowCart =false; this.cartItems = this.appservice.cartItems; document.getElementsByTagName("body")[0].style.overflowY = "auto";});
-  	    this.FetchItemListener = this.appservice.listenToFetchItemTrigger().subscribe(()=>{ this.fetchItems();});
-  }
+	cartCount:number=0;
+	showToastValue:boolean=false;
+	toastMsg: string='';
+  constructor(private apiservice:ApiServiceService) {}
 
 	ngOnInit() {
 		this.fetchItems();
 		if(localStorage.getItem('demo-cart')){
-			this.appservice.cartItems = JSON.parse(localStorage.getItem('demo-cart'));
-			this.appservice.cartCountTrigger(this.appservice.cartItems.length);
+			this.cartItems = JSON.parse(localStorage.getItem('demo-cart'));
+			this.cartCount = this.cartItems.length;
 		}
-		this.cartItems = this.appservice.cartItems;
-	}
-
-	ngOnDestroy(){
-		this.OpenCartListener.unsubscribe();
-		this.CloseCartListener.unsubscribe();
-		this.FetchItemListener.unsubscribe();
 	}
 
 	fetchItems(){
@@ -73,6 +62,36 @@ export class ItemListingComponent implements OnInit {
 		return tempArray;
 	}
 
+	openCart(){
+		this.ShowCart =true; 
+		document.getElementsByTagName("body")[0].style.overflowY = "hidden";
+	}
 
+	closeCart(){
+		this.ShowCart =false;
+		document.getElementsByTagName("body")[0].style.overflowY = "auto";
+	}
 
+	AddtoCart(item){
+		let items = this.cartItems;
+	    if(items.length == 0 || !items.find(i => i.id === item.id))
+	    {
+	      	item.qty = 1;
+	       	this.cartItems.unshift(item);
+	       	localStorage.setItem('demo-cart',JSON.stringify(this.cartItems));
+	       	this.cartCount=this.cartItems.length;
+	       	this.showToast();
+	    } 
+	    else{
+	        this.showToast(true);
+	    }
+	}
+
+  	showToast(added=false){
+    	this.showToastValue = true;
+    	this.toastMsg = added?"Already added to cart!": "Successfully added to cart!";
+    	setTimeout(()=>{
+       		this.showToastValue = false;
+    	},1500)
+  	}
 }

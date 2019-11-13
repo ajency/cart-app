@@ -1,6 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
-import {AppServiceService} from '../service/app-service.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -11,13 +9,16 @@ import { Subscription } from 'rxjs';
 export class CartComponent implements OnInit {
 
   @Input() cartItems: any;
-  @Input() showCart: any;
-  totalItemDiscount:any =0;
-  totalItemPrice:any =0;
-  OpenCartListener: Subscription;
+  @Input() showCart: boolean;
+  @Output() closeCartEmitter =  new EventEmitter();
+  @Output() updateCartCount =  new EventEmitter();
+  
+  totalItemDiscount:number =0;
+  totalItemPrice:number =0;
+  toastMsg: string='';
+  showToast:boolean=false;
 
-  constructor(private appservice:AppServiceService) { 
-    this.OpenCartListener = this.appservice.listenToOpenCartTrigger().subscribe(()=>{ this.calculateFinalPriceSummary()});
+  constructor() { 
   }
 
   ngOnInit() {
@@ -25,8 +26,7 @@ export class CartComponent implements OnInit {
   }
 
   closeCart(){
-  	// $('body').attr('overflow-y','auto');
-  	this.appservice.closeCartTrigger();
+  	this.closeCartEmitter.emit();
   }
 
   removeFromCart(id){
@@ -35,30 +35,25 @@ export class CartComponent implements OnInit {
        if(this.cartItems[i] && this.cartItems[i]['id'] === id){ 
            this.cartItems.splice(i,1);
            localStorage.setItem('demo-cart',JSON.stringify(this.cartItems));
-           this.appservice.cartCountTrigger(this.cartItems.length);
+           this.updateCartCount.emit(this.cartItems.length);
        }
     }
     this.calculateFinalPriceSummary();
   }
 
   AddRemoveQty(id,add){
-    let i = this.cartItems.length;
-   while(i--){
-       if(this.cartItems[i] && this.cartItems[i]['id'] === id){ 
-         if(add){
-           this.cartItems[i]['qty'] += 1;
-           if(this.cartItems[i]['qty'] == 5)
-             this.showMaxQuantityReached(true);
-         }
-         else{
-           this.cartItems[i]['qty'] -= 1;
-           if(this.cartItems[i]['qty'] == 1)
-             this.showMaxQuantityReached();
-
-         }
-         this.calculateFinalPriceSummary();
-       }
-    } 
+    let item = this.cartItems.find(i => i.id === id)
+    if(add){
+      item['qty'] += 1;
+      if(item['qty'] == 5)
+        this.showMaxQuantityReached(true);
+    }
+    else{
+      item['qty'] -= 1;
+      if(item['qty'] == 1)
+        this.showMaxQuantityReached();
+    }
+    this.calculateFinalPriceSummary();
   }
 
   calculateFinalPriceSummary(){
@@ -71,16 +66,10 @@ export class CartComponent implements OnInit {
   }
 
   showMaxQuantityReached(max = false){
-    document.getElementsByClassName('toast_msg_cart')[0].classList.add('shown');
-    if(max){
-       document.getElementsByClassName('toast_msg_cart')[0].innerHTML = " Max. quantity reached!";
-    }
-    else{
-       document.getElementsByClassName('toast_msg_cart')[0].innerHTML = " Min. quantity reached!";
-    }
-    document.getElementsByClassName('toast_msg_cart')[0].classList.add('shown');
-     setTimeout(function(){
-       document.getElementsByClassName('toast_msg_cart')[0].classList.remove('shown');
-    },1000)
+    this.toastMsg = max?" Max. quantity reached!":" Min. quantity reached!";
+    this.showToast=true;
+    setTimeout(() => {
+      this.showToast=false;
+    },1500)
   }
 }

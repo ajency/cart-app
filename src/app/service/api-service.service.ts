@@ -10,38 +10,32 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiServiceService {
 
-  handleError : any;
-  isBrowser:any;
-  ApiUrl = 'https://api.myjson.com/';
-  constructor(private http : HttpClient,@Inject(PLATFORM_ID) private platformId) {
-  	this.handleError = (error: any): Promise<any> => {
-			        let prerror = this.parseRejectedError(error);
-			        return Promise.reject(prerror);
-		        }
+  	handleError : any;
+  	ApiUrl = 'https://api.myjson.com/';
 
-   }
+  	constructor(private http : HttpClient,@Inject(PLATFORM_ID) private platformId) {
+  		this.handleError = (error: any): Promise<any> => {
+	        let prerror = this.parseRejectedError(error);
+	        return Promise.reject(prerror);
+	        }
+   	}
 
   	public request(url: string,type: string, body: object, optionalHeaders: object = {},overrideheaders: boolean = false, returntype: string = 'promise', observeResponse : boolean = false): any{
-	  let headers = new HttpHeaders({'Content-Type': 'application/json'});
-	  let opHeaderKeys = Object.keys(optionalHeaders);
-	  if(opHeaderKeys.length){
-	      for(let key of opHeaderKeys){
-	        headers = headers.append(key,optionalHeaders[key]);
-	      }
-	  }
-	  url= this.ApiUrl+url;
-	  let httpEvent;
+	  	let headers = new HttpHeaders({'Content-Type': 'application/json'});
+	  	let opHeaderKeys = Object.keys(optionalHeaders);
+	  	if(opHeaderKeys.length){
+	      	for(let key of opHeaderKeys){
+	        	headers = headers.append(key,optionalHeaders[key]);
+	      	}
+	  	}
+	  	url= this.ApiUrl+url;
+	  	let httpEvent;
 		if(type == 'get'){
-		  httpEvent = this.http.get(url,{params : this.toHttpParams(body), headers: headers});
+		  	httpEvent = this.http.get(url,{params : this.toHttpParams(body), headers: headers});
 		}
 
 		if(returntype == 'promise'){
-		  return httpEvent
-		  .toPromise()
-		  .then((response) => {
-		   return response;
-		 })
-		  .catch(this.handleError);
+		  	return httpEvent.toPromise().then((response) => { return response; }).catch(this.handleError);
 		}
 		else{
 		  	return httpEvent
@@ -62,8 +56,7 @@ export class ApiServiceService {
 	}
 
 	toHttpParams(params) {
-    return Object.getOwnPropertyNames(params)
-                 .reduce((p, key) => p.set(key, params[key]), new HttpParams());
+    	return Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
 	}
 
 }
