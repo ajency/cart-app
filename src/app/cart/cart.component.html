@@ -3,7 +3,7 @@
   <div class="cart">
     <div class="cart_container">
     	
-    	<div class=" toast_msg toast_msg_cart shown">
+    	<div class=" toast_msg toast_msg_cart">
     	  Max. quantity reached!
     	</div>
 
@@ -38,8 +38,8 @@
                 </a>
               </div>
               <div class="d-flex align-items-center">
-                <div class="product_price product_price--strike mr-2 text-danger" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price}}</div>
-                <div>₹{{item.selling_price}}</div>
+                <div class="product_price product_price--strike mr-2" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price}}</div>
+                <div class="product_price">₹{{item.selling_price}}</div>
               </div>
               <div class="d-flex justify-content-between">
                 <div class="d-inline-block text-center">
@@ -51,7 +51,7 @@
                   </div>
                 </div>
                 <div class="d-flex align-items-center">
-                  <div class="product_price">₹{{item.selling_price*item.qty}}</div>
+                  <div class="font-weight-light">₹{{item.selling_price*item.qty}}</div>
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@
               ₹{{totalItemPrice}}
             </div>
           </div>
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between" *ngIf="totalItemDiscount != 0">
             <div>
               <label class="font-weight-light">Total Discount</label>
             </div>

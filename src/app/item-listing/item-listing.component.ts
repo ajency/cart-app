@@ -66,7 +66,7 @@ export class ItemListingComponent implements OnInit {
 				'mrp_price': i.price,
 				'selling_price': (i.price - (i.price *(i.discount/100))),
 				'discount':i.discount,
-				'img_url':'https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg'
+				'img_url':'https://t5.rbxcdn.com/d63befb75d7a381fe4340d9cc8ee1961'
 			};
 			tempArray.push(tempItem);
 		}

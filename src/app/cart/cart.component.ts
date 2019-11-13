@@ -45,10 +45,17 @@ export class CartComponent implements OnInit {
     let i = this.cartItems.length;
    while(i--){
        if(this.cartItems[i] && this.cartItems[i]['id'] === id){ 
-         if(add)
+         if(add){
            this.cartItems[i]['qty'] += 1;
-         else
+           if(this.cartItems[i]['qty'] == 5)
+             this.showMaxQuantityReached(true);
+         }
+         else{
            this.cartItems[i]['qty'] -= 1;
+           if(this.cartItems[i]['qty'] == 1)
+             this.showMaxQuantityReached();
+
+         }
          this.calculateFinalPriceSummary();
        }
     } 
@@ -61,5 +68,19 @@ export class CartComponent implements OnInit {
       this.totalItemPrice+= i.qty*i.mrp_price;
       this.totalItemDiscount+= i.qty*(i.mrp_price-i.selling_price);
     }
+  }
+
+  showMaxQuantityReached(max = false){
+    document.getElementsByClassName('toast_msg_cart')[0].classList.add('shown');
+    if(max){
+       document.getElementsByClassName('toast_msg_cart')[0].innerHTML = " Max. quantity reached!";
+    }
+    else{
+       document.getElementsByClassName('toast_msg_cart')[0].innerHTML = " Min. quantity reached!";
+    }
+    document.getElementsByClassName('toast_msg_cart')[0].classList.add('shown');
+     setTimeout(function(){
+       document.getElementsByClassName('toast_msg_cart')[0].classList.remove('shown');
+    },1000)
   }
 }
