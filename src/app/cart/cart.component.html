@@ -1,4 +1,4 @@
-<div class="cartWrapper cartWrapper--active"> <!-- cartWrapper--active class to be removed/added to toggle cart -->
+<div class="cartWrapper" [ngClass]="{'cartWrapper--active':showCart}"> <!-- cartWrapper--active class to be removed/added to toggle cart -->
   <div class="cart_backdrop"></div>
   <div class="cart">
     <div class="cart_container">
