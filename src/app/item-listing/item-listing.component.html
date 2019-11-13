@@ -1,8 +1,12 @@
+<!-- Toast on click of Add to Cart button -->
 <div class="toast_msg toast_msg_page">
   Successfully added to cart!
 </div>
+
+<!-- Preloader -->
 <app-list-loader *ngIf="showLoader"></app-list-loader>
 
+<!-- List of Products -->
 <div class="container" *ngIf="!showLoader && ApiCallComplete && !ApiError">
   <div class="row">
   	<ng-container *ngFor="let item of items">
@@ -10,6 +14,9 @@
   	</ng-container>
   </div>
 </div>
+
+<!-- Cart -->
 <app-cart [showCart]="ShowCart" [cartItems]="cartItems"></app-cart>
 
+<!-- Error screen -->
 <app-erro-page *ngIf="!showLoader && ApiCallComplete && ApiError"></app-erro-page>

@@ -1,35 +1,43 @@
  <div class="">
-  <article class="product_card">
-    <div class="product_image">
-      <div class="product_image_holder">
-      	<img src="{{item.img_url}}" alt="{{item.name}} image" title="{{item.name}} image">
-      </div>
-    </div>
+	<article class="product_card">
+		<!-- Product Image -->
+		<div class="product_image">
+			<div class="product_image_holder">
+				<img src="{{item.img_url}}" alt="{{item.name}} image" title="{{item.name}} image">
+			</div>
+		</div>
 
-    <div class="discount_badge" *ngIf="item.discount!=0" title="Discount on product">
-      {{item.discount}}% off
-    </div>
+		<!-- Discount badge -->
+		<div class="discount_badge" *ngIf="item.discount!=0" title="Discount on product">
+			{{item.discount}}% off
+		</div>
 
-    <div class="product_description">
-      <div class="row">
-      	<div class="col-6">
-      		<div class="">
-      			<h1 class="product_title">
-  						<a href="javascript:void(0);">
-  							{{item.name}}
-  						</a>
-  					</h1>
-	        	<div class="d-flex">
-          		<div class="product_price product_price--strike mr-2" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price}}</div>
-          		<div class="product_price">₹{{item.selling_price}}</div>
-	        	</div>
-      		</div>
-  		  </div>
-       	<div class="col-6 d-flex align-items-center">
-        	<button class="btn btn_brand btn_sm btn-block" type="button" (click)="AddToCart(item)"  title="Add the product to cart">Add To Cart</button>
-  		  </div>
-      </div>
-    
-    </div>
-  </article>
+		<div class="product_description">
+			<div class="row">
+				<div class="col-6">
+					<div class="">
+
+						<!-- Product name -->
+						<h1 class="product_title">
+							<a href="javascript:void(0);">
+								{{item.name}}
+							</a>
+						</h1>
+
+						<!-- Product price -->
+						<div class="d-flex">
+							<div class="product_price product_price--strike mr-2" *ngIf="item.mrp_price != item.selling_price">₹{{item.mrp_price}}</div>
+							<div class="product_price">₹{{item.selling_price}}</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Add to cart button -->
+				<div class="col-6 d-flex align-items-center">
+					<button class="btn btn_brand btn_sm btn-block" type="button" (click)="AddToCart(item)"  title="Add the product to cart">Add To Cart</button>
+				</div>
+
+			</div>
+		</div>
+	</article>
 </div>
