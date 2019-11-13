@@ -36,7 +36,7 @@ export class ItemCardComponent implements OnInit {
     return false;
   }
 
-  showToast(added){
+  showToast(added=false){
     document.getElementsByClassName('toast_brand')[0].classList.add('shown');
     if(added)
       document.getElementsByClassName('toast_brand')[0].innerHTML ="Already added to cart!";
