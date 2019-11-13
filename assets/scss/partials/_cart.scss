@@ -87,16 +87,4 @@
 		cursor: pointer;
 		min-width: 30px;
 	}
-	&_empty{
-		height: 60vh;
-	    display: flex;
-	    flex-direction: column;
-	    justify-content: center;
-		img{
-			width: 80px;
-			margin-left: auto;
-			margin-right: auto;
-			display: block;
-		}
-	}
 }
