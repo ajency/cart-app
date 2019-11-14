@@ -21,4 +21,8 @@
 		font-size: 11px;
 		padding: 0.375rem 0.25rem;
 	}
+
+	&.disabled, &:disabled {
+   		opacity: 0.35;
+	}
 }
