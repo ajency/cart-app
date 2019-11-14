@@ -1,8 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiServiceService } from '../service/api-service.service';
-import { Subscription } from 'rxjs';
-
-
 
 @Component({
   selector: 'app-item-listing',
@@ -11,26 +8,27 @@ import { Subscription } from 'rxjs';
 })
 export class ItemListingComponent implements OnInit {
 
-	items: any;
-	ShowCart:boolean=false;
-	showLoader:boolean=true;
-	ApiCallComplete: boolean=false;
-	ApiError:boolean =false;
-	CloseCartListener: Subscription;
-	cartItems:any =[];
-	cartCount:number=0;
-	showToastValue:boolean=false;
-	toastMsg: string='';
+	items: any; //for temporary storing of the items to be displayed
+	ShowCart:boolean=false; //for toggling cart display
+	showLoader:boolean=true; //for toggle the loader display on fetching the data
+	ApiCallComplete: boolean=false; //for ensuring API call is complete
+	ApiError:boolean =false; //for knowing when there is an API failure
+	cartItems:any =[]; //for storing the items to be displayed in the cart
+	cartCount:number=0; //for displaying the cart item count on the cart icon
+	showToastValue:boolean=false; //for toast display toggling
+	toastMsg: string=''; //for altering the toast message
   constructor(private apiservice:ApiServiceService) {}
 
 	ngOnInit() {
 		this.fetchItems();
+		//fetch content from localStorage if present for cart
 		if(localStorage.getItem('demo-cart')){
 			this.cartItems = JSON.parse(localStorage.getItem('demo-cart'));
 			this.cartCount = this.cartItems.length;
 		}
 	}
 
+	//function for fetching data from apiu
 	fetchItems(){
 		this.apiservice.request('bins/qhnfp', 'get', {} , {}).then((response)=>{
 		this.showLoader = false;
@@ -46,6 +44,7 @@ export class ItemListingComponent implements OnInit {
 	  }) 
 	}
 
+	//formatting the data according to the need
 	formatData(data){
 		let tempArray= [],tempItem={};
 		for(let i of data){
@@ -62,16 +61,13 @@ export class ItemListingComponent implements OnInit {
 		return tempArray;
 	}
 
-	openCart(){
-		this.ShowCart =true; 
-		document.getElementsByTagName("body")[0].style.overflowY = "hidden";
+	//function for opening and closing the cart along with toggling body scroll
+	toggleCartDisplay(display= false){
+		this.ShowCart =display; 
+		document.getElementsByTagName("body")[0].style.overflowY = display?"hidden":"auto";
 	}
 
-	closeCart(){
-		this.ShowCart =false;
-		document.getElementsByTagName("body")[0].style.overflowY = "auto";
-	}
-
+	// function for adding item to cart and also show warning for adding duplicate item
 	AddtoCart(item){
 		let items = this.cartItems;
 	    if(items.length == 0 || !items.find(i => i.id === item.id))
@@ -87,6 +83,7 @@ export class ItemListingComponent implements OnInit {
 	    }
 	}
 
+	//function for toggling the toast display
   	showToast(added=false){
     	this.showToastValue = true;
     	this.toastMsg = added?"Already added to cart!": "Successfully added to cart!";

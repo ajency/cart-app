@@ -7,14 +7,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ItemCardComponent implements OnInit {
 	
-  @Input() item : any;
-  @Output() addToCartEvent = new EventEmitter();
+  @Input() item : any; //contains the item detail to be displayed in the card
+  @Output() addToCartEvent = new EventEmitter(); //event emitter for adding the current item to the cartItems
   
   constructor() { }
 
   ngOnInit() {
   }
 
+  //function for emitting the add ta cart event
   AddToCart(item){
     this.addToCartEvent.emit(item);
   }  

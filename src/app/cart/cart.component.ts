@@ -8,39 +8,43 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  @Input() cartItems: any;
-  @Input() showCart: boolean;
-  @Output() closeCartEmitter =  new EventEmitter();
-  @Output() updateCartCount =  new EventEmitter();
+  @Input() cartItems: any; //contains the items to be displayed in the cart sent from the parent element
+  @Input() showCart: boolean; //used to toggling the display of cart
+  @Output() closeCartEmitter =  new EventEmitter(); //event emitter  for closing the cart
+  @Output() updateCartCount =  new EventEmitter(); //event emitter for updating the item count shown on top of the cart icon
   
-  totalItemDiscount:number =0;
-  totalItemPrice:number =0;
-  toastMsg: string='';
-  showToast:boolean=false;
+  totalItemDiscount:number =0; //used for storing the overall discount of the product of the cart
+  totalItemPrice:number =0; //used for storing the overall price of the product of the cart
+  toastMsg: string='';  //used managing the toast message
+  showToast:boolean=false;  //used for toggling the toast display 
 
   constructor() { 
   }
 
   ngOnInit() {
-    this.calculateFinalPriceSummary()
+    this.calculateFinalPriceSummary(); //on initailisation calling the calculate final price
   }
 
+//emits an evnt to the parent component for closing the cart
   closeCart(){
   	this.closeCartEmitter.emit();
   }
 
+  //function used for removed the item from the cart items and also updating the localStorage
   removeFromCart(id){
     let i = this.cartItems.length;
     while(i--){
        if(this.cartItems[i] && this.cartItems[i]['id'] === id){ 
            this.cartItems.splice(i,1);
            localStorage.setItem('demo-cart',JSON.stringify(this.cartItems));
-           this.updateCartCount.emit(this.cartItems.length);
+           this.updateCartCount.emit(this.cartItems.length); //emitting the cart count event with the count to be shown
        }
     }
+    // on completing the remove operation calling the price calculation function
     this.calculateFinalPriceSummary();
   }
 
+  //used for updating the quantity of the product and also handling the max. and min. quantity 
   AddRemoveQty(id,add){
     let item = this.cartItems.find(i => i.id === id)
     if(add){
@@ -56,6 +60,8 @@ export class CartComponent implements OnInit {
     this.calculateFinalPriceSummary();
   }
 
+
+  //used for calculating the final price and discount
   calculateFinalPriceSummary(){
     this.totalItemPrice=0;
     this.totalItemDiscount=0;
@@ -67,9 +73,11 @@ export class CartComponent implements OnInit {
     }
   }
 
+  //used for displaying the toast for max. and min. quanity reached
   showMaxQuantityReached(max = false){
     this.toastMsg = max?" Max. quantity reached!":" Min. quantity reached!";
     this.showToast=true;
+    //for hiding the toast after a delay
     setTimeout(() => {
       this.showToast=false;
     },1500)

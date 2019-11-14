@@ -1,4 +1,4 @@
-<app-header (openCartEvent)="openCart();cart.calculateFinalPriceSummary();" [cartCount]="cartCount"></app-header>
+<app-header (openCartEvent)="toggleCartDisplay(true);cart.calculateFinalPriceSummary();" [cartCount]="cartCount"></app-header>
 
 <!-- Toast on click of Add to Cart button -->
 <div class="toast_msg toast_msg_page" [ngClass]="{'shown': showToastValue}">
@@ -18,7 +18,7 @@
 </div>
 
 <!-- Cart -->
-<app-cart [showCart]="ShowCart" [cartItems]="cartItems" (closeCartEmitter)="closeCart()" (updateCartCount)="cartCount = $event" #cart></app-cart>
+<app-cart [showCart]="ShowCart" [cartItems]="cartItems" (closeCartEmitter)="toggleCartDisplay()" (updateCartCount)="cartCount = $event" #cart></app-cart>
 
 <!-- Error screen -->
 <app-erro-page *ngIf="!showLoader && ApiCallComplete && ApiError" (callFetchApi)="fetchItems()"></app-erro-page>

@@ -7,12 +7,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ErroPageComponent implements OnInit {
 
-	@Output() callFetchApi = new EventEmitter();
+	@Output() callFetchApi = new EventEmitter(); // event emitter for for fetching the API response
   constructor() { }
 
   ngOnInit() {
   }
 
+  // function for emitting the fetch api event
   callFetch(){
   	this.callFetchApi.emit();
   }

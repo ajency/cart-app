@@ -7,11 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListLoaderComponent implements OnInit {
 
-	DemoArray:any;
   constructor() { }
 
   ngOnInit() {
-  	this.DemoArray = new Array(2);
   }
 
 }
