@@ -6,6 +6,7 @@
     position: fixed;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
     transition: all 0.3s ease-out;
+    white-space: nowrap;
     &_page{
         top: 70px;
         transform: translateX(300px);

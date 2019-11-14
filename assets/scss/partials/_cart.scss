@@ -49,18 +49,18 @@
 		line-height: 16px;
 		.secure_logo{
 			display: block;
-		    height: 30px;
-		    width: 30px;
+			height: 30px;
+			width: 30px;
 		}
 	}
 	&_close{
 		height: 60px;
-	    width: 60px;
-	    cursor: pointer;
-	    display: flex;
-	    align-items: center;
-	    justify-content: center;
-	    background-color: gray;
+		width: 60px;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: gray;
 	}
 	&_product{
 		border-bottom: 1px solid $gray;
@@ -73,6 +73,9 @@
 		width: 20%;
 		img{
 			object-fit: cover;
+		}
+		@media(max-width: 580px){
+			width: 30%
 		}
 	}
 	&_details{
