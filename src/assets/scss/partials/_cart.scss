@@ -74,6 +74,9 @@
 		img{
 			object-fit: cover;
 		}
+		@media(max-width: 580px){
+			width: 30%
+		}
 	}
 	&_details{
 		width: 100%;
